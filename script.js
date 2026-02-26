@@ -37,6 +37,37 @@ const cyberProjects = [
     }
 ];
 
+// DADOS DOS CURSOS E CERTIFICAÇÕES
+const trainingRecords = [
+    {
+        name: "Fundamentos de Cibersegurança",
+        issuer: "Cisco Networking Academy",
+        hours: "30h",
+        year: "2024"
+    },
+    {
+        name: "Introdução a Redes de Computadores",
+        issuer: "FATEC",
+        hours: "80h",
+        year: "2024"
+    },
+    {
+        name: "Linux e Bash Scripting para Segurança",
+        issuer: "Plataforma X / Autodidata",
+        hours: "40h",
+        year: "2025"
+    }
+];
+
+const academicRecords = [
+    {
+        course: "Análise e Desenvolvimento de Sistemas",
+        institution: "FATEC São José dos Campos",
+        period: "2024 - Presente",
+        status: "3º Semestre"
+    }
+];
+
 const techModules = [
     "DevSecOps", "OSINT", "Python", "Bash/Shell", "Linux Hardening", 
     "Análise de Vulnerabilidades", "Git/GitHub", "Redes TCP/IP"
@@ -45,8 +76,10 @@ const techModules = [
 function initSystem() {
     checkSystemStatus();
     renderModules();
+    renderEducation();
     renderProjects();
     setupOutsideClickModal(); 
+    renderCerts();
 }
 
 
@@ -63,6 +96,38 @@ function checkSystemStatus() {
     }
 }
 
+
+function renderCerts() {
+    const container = document.getElementById('certs-list');
+    container.innerHTML = '';
+
+    trainingRecords.forEach(record => {
+        const item = document.createElement('div');
+        item.className = 'cert-item';
+        item.innerHTML = `
+            <h3>> ${record.name}</h3>
+            <p>Emissor_Node: ${record.issuer}</p>
+            <span class="cert-meta">[ workload: ${record.hours} | timestamp: ${record.year} ]</span>
+        `;
+        container.appendChild(item);
+    });
+}
+
+function renderEducation() {
+    const container = document.getElementById('edu-list');
+    container.innerHTML = '';
+
+    academicRecords.forEach(record => {
+        const item = document.createElement('div');
+        item.className = 'cert-item'; 
+        item.innerHTML = `
+            <h3>> ${record.course}</h3>
+            <p>Institution_Node: ${record.institution}</p>
+            <span class="cert-meta">[ period: ${record.period} | status: ${record.status} ]</span>
+        `;
+        container.appendChild(item);
+    });
+}
 
 function renderProjects() {
     const grid = document.getElementById('projects-grid');
