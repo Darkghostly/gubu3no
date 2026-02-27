@@ -160,6 +160,17 @@ function renderModules() {
     });
 }
 
+function initSystem() {
+    loadSavedTheme();
+    checkSystemStatus();
+    renderModules();
+    renderProjects();
+    renderEducation();
+    renderCerts();
+    setupOutsideClickModal();
+    systemBootSequence();
+    typeWriterEffect();
+}
 
 function openModal(projectId) {
 
@@ -196,6 +207,60 @@ function setupOutsideClickModal() {
         if (e.target === modalOverlay) {
             closeModal();
         }
+    });
+}
+
+
+function toggleTheme() {
+    const body = document.body;
+    
+    if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        localStorage.setItem('sys_theme', 'dark');
+    } else {
+        body.classList.add('light-theme');
+        localStorage.setItem('sys_theme', 'light');
+    }
+}
+
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('sys_theme');
+    
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+}
+
+// EFEITO 1: Terminal Typing Effect
+function typeWriterEffect() {
+    const text = "Especialista em Cibersegurança em formação";
+    const element = document.getElementById('typing-text');
+    let i = 0;
+    element.innerHTML = ''; // Limpa antes de começar
+
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            // Velocidade da digitação aleatória (entre 30ms e 80ms) para parecer humano/sistema real
+            setTimeout(typing, Math.random() * 50 + 30); 
+        }
+    }
+    
+    // Inicia o efeito após 500ms (dando tempo da página carregar)
+    setTimeout(typing, 500);
+}
+
+// EFEITO 2: System Boot (Carregamento em Cascata)
+function systemBootSequence() {
+    // Pega todos os painéis da página
+    const panels = document.querySelectorAll('.panel');
+    
+    // Adiciona a classe 'booted' um por um, com um atraso de 150ms entre eles
+    panels.forEach((panel, index) => {
+        setTimeout(() => {
+            panel.classList.add('booted');
+        }, index * 150); 
     });
 }
 

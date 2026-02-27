@@ -185,3 +185,73 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
     .links { justify-content: center; }
     .avatar { margin-bottom: 10px; }
 }
+
+/* --- EFEITOS CYBERSECURITY --- */
+
+/* 1. Cursor do Terminal Piscando */
+.cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-color: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* 2. Efeito Glitch no Logo ao passar o mouse */
+.logo {
+    position: relative;
+    display: inline-block;
+    transition: all 0.2s;
+}
+.logo:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: #fff;
+    text-shadow: 2px 0 var(--accent), -2px 0 #ff003c;
+}
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+/* 3. Preparação para a Inicialização (Boot) em Cascata */
+.panel {
+    opacity: 0; /* Esconde inicialmente */
+    transform: translateY(20px); /* Joga um pouco para baixo */
+}
+
+/* Classe que o JS vai adicionar para mostrar o painel com animação */
+.panel.booted {
+    animation: systemBoot 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes systemBoot {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- TEMA CLARO (LIGHT MODE) --- */
+body.light-theme {
+    --bg-color: #f0f2f5;
+    --panel-bg: #ffffff;
+    --border-color: #d0d7de;
+    --text-main: #24292f;
+    --text-muted: #57606a;
+    --accent: #0969da; /* Azul corporativo para substituir o verde */
+    --accent-glow: rgba(9, 105, 218, 0.4);
+}
+
+/* Ajustes finos para o tema claro não perder o contraste */
+body.light-theme .panel-header { background: #f6f8fa; }
+body.light-theme .project-card, 
+body.light-theme .skill-tag,
+body.light-theme input, 
+body.light-theme textarea { background: #ffffff; }
+
+body.light-theme .scanline { opacity: 0.05; background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(9,105,218,0.1) 50%, rgba(0,0,0,0) 100%); }
