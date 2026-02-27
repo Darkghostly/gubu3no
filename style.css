@@ -39,7 +39,6 @@ body {
 }
 @keyframes scanline { 0% { top: -100px; } 100% { top: 100vh; } }
 
-/* Cabeçalho Responsivo */
 .sys-header {
     display: flex; flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
     gap: 15px; justify-content: space-between; align-items: center;
@@ -47,16 +46,27 @@ body {
     background: var(--panel-bg); margin-bottom: 20px; border-radius: 4px;
 }
 
-.logo { font-family: var(--font-cmd); font-weight: 600; color: var(--accent); }
-.sys-nav { display: flex; flex-wrap: wrap; gap: 15px; } /* Gap substitui o margin-left */
+.logo { 
+    font-family: var(--font-cmd); 
+    font-weight: 600; 
+    color: var(--accent); 
+}
+
+.sys-nav { display: flex; flex-wrap: wrap; gap: 15px; }
+
 .sys-nav a { 
     color: var(--text-muted); text-decoration: none; 
     font-family: var(--font-cmd); font-size: 0.85rem; transition: color 0.3s;
 }
 .sys-nav a:hover { color: var(--text-main); }
 
-/* Reduzido o max-width e o gap do Dashboard para ficar mais compacto */
-.dashboard { display: flex; flex-direction: column; gap: 15px; max-width: 900px; margin: 0 auto; }
+.dashboard {
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
 
 .panel {
     background: var(--panel-bg); border: 1px solid var(--border-color);
@@ -64,8 +74,13 @@ body {
 }
 
 .panel-header {
-    background: #010409; padding: 8px 12px; border-bottom: 1px solid var(--border-color);
-    font-family: var(--font-cmd); color: var(--text-muted); display: flex; align-items: center;
+    background: #010409; 
+    padding: 8px 12px; 
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-cmd); 
+    color: var(--text-muted); 
+    display: flex; 
+    align-items: center;
 }
 .panel-header h2 { font-size: 0.9rem; margin-left: 10px; font-weight: normal;}
 
@@ -75,11 +90,10 @@ body {
 
 .profile-grid { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
 
-/* IMAGEM DE PERFIL MENOR */
 .avatar { 
-    width: 110px; /* Reduzido de 150px */
-    height: 110px; /* Reduzido de 150px */
-    border-radius: 4px; 
+    width: 170px; /* Reduzido de 150px */
+    height: 170px; /* Reduzido de 150px */
+    border-radius: 10px; 
     border: 1px solid var(--border-color); 
     filter: grayscale(20%);
     object-fit: cover;
@@ -95,14 +109,12 @@ body {
 .links a, .modal-actions a { text-decoration: none; color: var(--accent); transition: all 0.3s;}
 .links a:hover, .modal-actions a:hover { text-shadow: 0 0 5px var(--accent-glow); }
 
-/* Grid de Skills */
 .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-tag {
     background: #010409; border: 1px solid var(--border-color); padding: 4px 10px;
     font-family: var(--font-cmd); font-size: 0.8rem; color: var(--text-muted);
 }
 
-/* Grid de Projetos */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
 .project-card {
     border: 1px solid var(--border-color); padding: 15px; background: #010409;
@@ -125,7 +137,6 @@ body {
 .project-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
 .tech-stack { font-family: var(--font-cmd); font-size: 0.75rem; color: var(--accent); }
 
-/* Cursos e Certificações */
 .certs-container { display: flex; flex-direction: column; gap: 10px; }
 .cert-item {
     border-left: 2px solid var(--accent); 
@@ -142,7 +153,6 @@ body {
 .cert-item p { font-size: 0.85rem; color: var(--text-muted); }
 .cert-meta { font-family: var(--font-cmd); color: var(--accent); font-size: 0.75rem; margin-top: 8px; display: inline-block; }
 
-/* MODAL */
 .modal-overlay {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.85); z-index: 2000;
@@ -164,7 +174,6 @@ body {
 .panel-body { padding: 20px; }
 .modal-actions { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 15px; }
 
-/* Formulário */
 form { display: flex; flex-direction: column; gap: 12px; }
 input, textarea {
     background: #010409; border: 1px solid var(--border-color); color: var(--text-main);
@@ -177,7 +186,6 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
 }
 .cmd-btn:hover { background: var(--accent); color: var(--bg-color); box-shadow: 0 0 10px var(--accent-glow); }
 
-/* Mobile (Responsividade) */
 @media (max-width: 768px) { 
     .sys-header { flex-direction: column; align-items: flex-start; }
     .sys-nav { width: 100%; justify-content: space-between; }
@@ -186,9 +194,8 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
     .avatar { margin-bottom: 10px; }
 }
 
-/* --- EFEITOS CYBERSECURITY --- */
 
-/* 1. Cursor do Terminal Piscando */
+
 .cursor-blink {
     display: inline-block;
     width: 8px;
@@ -200,7 +207,6 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* 2. Efeito Glitch no Logo ao passar o mouse */
 .logo {
     position: relative;
     display: inline-block;
@@ -220,13 +226,12 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
     100% { transform: translate(0) }
 }
 
-/* 3. Preparação para a Inicialização (Boot) em Cascata */
+
 .panel {
-    opacity: 0; /* Esconde inicialmente */
-    transform: translateY(20px); /* Joga um pouco para baixo */
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-/* Classe que o JS vai adicionar para mostrar o painel com animação */
 .panel.booted {
     animation: systemBoot 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -236,18 +241,16 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* --- TEMA CLARO (LIGHT MODE) --- */
 body.light-theme {
     --bg-color: #f0f2f5;
     --panel-bg: #ffffff;
     --border-color: #d0d7de;
     --text-main: #24292f;
     --text-muted: #57606a;
-    --accent: #0969da; /* Azul corporativo para substituir o verde */
+    --accent: #0969da;
     --accent-glow: rgba(9, 105, 218, 0.4);
 }
 
-/* Ajustes finos para o tema claro não perder o contraste */
 body.light-theme .panel-header { background: #f6f8fa; }
 body.light-theme .project-card, 
 body.light-theme .skill-tag,

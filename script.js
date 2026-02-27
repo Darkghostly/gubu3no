@@ -5,7 +5,7 @@ const cyberProjects = [
         shortDesc: "Monitoramento em Python focado em detecção de força bruta via análise de logs SSH.",
         fullDesc: "Ferramenta avançada de defesa que realiza o parsing de logs de autenticação (auth.log) em tempo real. Identifica padrões de ataque de força bruta e bloqueia IPs atacantes automaticamente interagindo com o firewall iptables. Gera relatórios em JSON e envia alertas via webhook para Discord/Slack.\n\nPrincipais desafios: Otimização de leitura de arquivos grandes e evitar condições de corrida na aplicação de regras de firewall.",
         techs: "Python | Iptables | Regex | Webhooks",
-        deployLink: "#",
+        deployLink: null,
         githubLink: "https://github.com/seu-usuario/guardlog"
     },
     {
