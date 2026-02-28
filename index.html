@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="scanline"></div>
+    <iframe class="threat-map" src="https://cybermap.kaspersky.com/widget/dynamic/dark" frameborder="0"></iframe>
+    <div class="map-overlay"></div> <div class="scanline"></div>
     
     <header class="sys-header">
         <div class="logo">> G.BUENO_SYS</div>
@@ -18,7 +19,7 @@
             <a href="#certifications">[03] Treinamentos</a>
             <a href="#projects">[04] Operações</a>
             <a href="#contact">[05] Conexão</a>
-            <button id="theme-toggle" class="cmd-btn" style="padding: 5px 10px; margin-left: 10px;" onclick="toggleTheme()">[ INVERT_COLORS ]</button>
+            <button id="theme-toggle" class="cmd-btn" style="padding: 5px 10px;" onclick="toggleTheme()">[ INVERT_COLORS ]</button>
         </nav>
     </header>
 
@@ -34,11 +35,10 @@
                     <h1>Gustavo Bueno</h1>
                     <p class="role">> <span id="typing-text"></span><span class="cursor-blink">&nbsp;</span></p>
                     <p class="desc">Focado em DevSecOps, OSINT, automação defensiva e arquitetura de proteção. Desenvolvimento de soluções táticas para segurança digital e análise de ameaças.</p>
-
+                    
                     <div class="links">
                         <a href="https://github.com/Darkghostly" target="_blank">> GitHub</a>
                         <a href="mailto:seu-email@email.com">> E-mail</a>
-                        <a href="https://www.linkedin.com/in/gustavo-bueno-da-silva-797292324/" target="_blank">> Linkedin</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <h2>academic_records.db</h2>
             </div>
             <div class="panel-content">
-                <div id="edu-list" class="certs-container"></div> 
+                <div id="edu-list" class="certs-container"></div>
             </div>
         </section>
 
@@ -67,7 +67,8 @@
                 <h2>training_records.dat</h2>
             </div>
             <div class="panel-content">
-                <div id="certs-list" class="certs-container"></div> </div>
+                <div id="certs-list" class="certs-container"></div>
+            </div>
         </section>
 
         <section id="projects" class="panel projects-panel">
