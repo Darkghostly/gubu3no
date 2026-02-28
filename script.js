@@ -74,14 +74,16 @@ const techModules = [
 ];
 
 function initSystem() {
+    loadSavedTheme();
     checkSystemStatus();
     renderModules();
-    renderEducation();
     renderProjects();
-    setupOutsideClickModal(); 
+    renderEducation();
     renderCerts();
+    setupOutsideClickModal();
+    systemBootSequence();
+    typeWriterEffect();
 }
-
 
 function checkSystemStatus() {
     const statusIndicator = document.getElementById('sys-status');
@@ -160,17 +162,6 @@ function renderModules() {
     });
 }
 
-function initSystem() {
-    loadSavedTheme();
-    checkSystemStatus();
-    renderModules();
-    renderProjects();
-    renderEducation();
-    renderCerts();
-    setupOutsideClickModal();
-    systemBootSequence();
-    typeWriterEffect();
-}
 
 function openModal(projectId) {
 
@@ -231,32 +222,31 @@ function loadSavedTheme() {
     }
 }
 
-// EFEITO 1: Terminal Typing Effect
+
 function typeWriterEffect() {
     const text = "Especialista em Cibersegurança em formação";
     const element = document.getElementById('typing-text');
     let i = 0;
-    element.innerHTML = ''; // Limpa antes de começar
+    element.innerHTML = '';
 
     function typing() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
-            // Velocidade da digitação aleatória (entre 30ms e 80ms) para parecer humano/sistema real
             setTimeout(typing, Math.random() * 50 + 30); 
         }
     }
     
-    // Inicia o efeito após 500ms (dando tempo da página carregar)
+
     setTimeout(typing, 500);
 }
 
-// EFEITO 2: System Boot (Carregamento em Cascata)
+
 function systemBootSequence() {
-    // Pega todos os painéis da página
+
     const panels = document.querySelectorAll('.panel');
     
-    // Adiciona a classe 'booted' um por um, com um atraso de 150ms entre eles
+
     panels.forEach((panel, index) => {
         setTimeout(() => {
             panel.classList.add('booted');
