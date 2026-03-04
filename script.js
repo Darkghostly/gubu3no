@@ -40,10 +40,29 @@ const cyberProjects = [
 // DADOS DOS CURSOS E CERTIFICAÇÕES
 const trainingRecords = [
     {
-        name: "Fundamentos de Cibersegurança",
-        issuer: "Cisco Networking Academy",
+        name: "Cybersecurity Essentials",
+        issuer: "IBM",
+        hours: "100h",
+        year: "2025"
+    },
+    {
+        name: "Boas Práticas de Cibersegurança",
+        description: "IC-SEC-1783",
+        issuer: "IBSEC",
         hours: "30h",
-        year: "2024"
+        year: "2026"
+    },
+    {
+        name: "Certificado Profissional de Segurança cibernética do Google",
+        issuer: "Google",
+        hours: "116h",
+        year: "2025"
+    },
+    {
+        name: "Introduction to Cybersecurity",
+        issuer: "IC2S",
+        hours: "116h",
+        year: "2025"
     },
     {
         name: "Introdução a Redes de Computadores",
