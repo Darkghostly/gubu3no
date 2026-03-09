@@ -26,15 +26,6 @@ const cyberProjects = [
         deployLink: null,
         githubLink: "https://github.com/seu-usuario/integrity-checker"
     },
-    {
-        id: 3,
-        name: "Secure_API_Gateway",
-        shortDesc: "Implementação de gateway com validação JWT e rate limiting para proteção de microsserviços.",
-        fullDesc: "Projeto focado em defesa de aplicação web. Atua como um proxy reverso que implementa autenticação via JSON Web Tokens (JWT), prevenindo acesso não autorizado. Inclui middleware de Rate Limiting utilizando Redis para mitigar ataques de Negação de Serviço (DoS) na camada de aplicação.",
-        techs: "Node.js | Express | Redis | JWT Security",
-        deployLink: "https://api-demo-link.com",
-        githubLink: "https://github.com/seu-usuario/secure-gateway"
-    }
 ];
 
 const trainingRecords = [
@@ -43,7 +34,6 @@ const trainingRecords = [
     { name: "Certificado Profissional de Segurança cibernética", issuer: "Google", hours: "116h", year: "2025" },
     { name: "Introduction to Cybersecurity", issuer: "IC2S", hours: "116h", year: "2025" },
     { name: "Introdução a Redes de Computadores", issuer: "FATEC", hours: "80h", year: "2024" },
-    { name: "Linux e Bash Scripting para Segurança", issuer: "Plataforma X / Autodidata", hours: "40h", year: "2025" }
 ];
 
 const academicRecords = [
@@ -60,7 +50,6 @@ const techModules = [
     "Análise de Vulnerabilidades", "Git/GitHub", "Redes TCP/IP"
 ];
 
-// NOVA ADIÇÃO: Array de Soft Skills para cumprir o requisito do professor
 const softSkills = [
     "Comunicação", "Organização", "Trabalho em Equipe", "Pensamento Analítico", "Resolução de Problemas"
 ];
@@ -73,7 +62,7 @@ function initSystem() {
     renderEducation();
     renderCerts();
     setupOutsideClickModal();
-    setupContactForm(); // Iniciando a validação do formulário
+    setupContactForm();
     systemBootSequence();
     typeWriterEffect();
 }
@@ -141,7 +130,6 @@ function renderModules() {
     const container = document.getElementById('skills-container');
     container.innerHTML = '<h3 style="width: 100%; margin-bottom: 10px; font-family: var(--font-cmd); font-size: 0.9rem; color: var(--accent);">[+] Hard Skills</h3>';
     
-    // REQUISITO CUMPRIDO: Comando de repetição 'for' explícito
     for (let i = 0; i < techModules.length; i++) {
         const span = document.createElement('span');
         span.className = 'skill-tag';
@@ -149,7 +137,6 @@ function renderModules() {
         container.appendChild(span);
     }
 
-    // Adicionando as Soft Skills no mesmo container
     const softTitle = document.createElement('h3');
     softTitle.style.cssText = 'width: 100%; margin-top: 15px; margin-bottom: 10px; font-family: var(--font-cmd); font-size: 0.9rem; color: var(--text-muted);';
     softTitle.textContent = '[+] Soft Skills';
@@ -163,21 +150,19 @@ function renderModules() {
     }
 }
 
-// REQUISITO CUMPRIDO: Estrutura de decisão (if / else) para validar formulário
 function setupContactForm() {
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Impede o envio padrão da página
+        event.preventDefault();
 
         const nameInput = document.getElementById('name').value;
         const messageInput = document.getElementById('message').value;
 
-        // Estrutura de decisão if / else
         if (nameInput.trim() === '' || messageInput.trim() === '') {
             alert("[ERRO] Falha na execução: Os campos Target_Name e Payload_Message não podem estar vazios.");
         } else {
             alert("[SUCESSO] Payload enviado com sucesso. Conexão estabelecida com " + nameInput);
-            form.reset(); // Limpa o formulário após o envio
+            form.reset();
         }
     });
 }
