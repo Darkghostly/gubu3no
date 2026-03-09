@@ -127,6 +127,17 @@ body.light-theme .map-overlay { background: radial-gradient(circle at center, rg
     display: block;
 }
 
+.sys-header {
+    display: flex; flex-wrap: wrap; 
+    gap: 15px; justify-content: space-between; align-items: center;
+    padding: 12px 15px; border: 1px solid var(--border-color);
+    background: var(--panel-bg); margin-bottom: 20px; border-radius: 4px;
+    
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .bio-text h1 { font-size: 1.8rem; margin-bottom: 2px; }
 .role { font-family: var(--font-cmd); color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; }
 .desc { color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem; }
@@ -134,7 +145,7 @@ body.light-theme .map-overlay { background: radial-gradient(circle at center, rg
 .links a, .modal-actions a { font-family: var(--font-cmd); font-size: 0.85rem; text-decoration: none; color: var(--accent); transition: all 0.3s;}
 .links a:hover, .modal-actions a:hover { text-shadow: 0 0 5px var(--accent-glow); }
 
-/* Grid de Skills */
+
 .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-tag {
     background: #010409; border: 1px solid var(--border-color); padding: 5px 12px;

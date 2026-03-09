@@ -1,7 +1,7 @@
 const cyberProjects = [
     {
         id: 0,
-        name: "GuardLog_v1.0",
+        name: "GuardLog_v2.0",
         shortDesc: "Monitoramento em Python focado em detecção de força bruta via análise de logs SSH.",
         fullDesc: "Ferramenta avançada de defesa que realiza o parsing de logs de autenticação (auth.log) em tempo real. Identifica padrões de ataque de força bruta e bloqueia IPs atacantes automaticamente interagindo com o firewall iptables. Gera relatórios em JSON e envia alertas via webhook para Discord/Slack.\n\nPrincipais desafios: Otimização de leitura de arquivos grandes e evitar condições de corrida na aplicação de regras de firewall.",
         techs: "Python | Iptables | Regex | Webhooks",
@@ -37,45 +37,13 @@ const cyberProjects = [
     }
 ];
 
-// DADOS DOS CURSOS E CERTIFICAÇÕES
 const trainingRecords = [
-    {
-        name: "Cybersecurity Essentials",
-        issuer: "IBM",
-        hours: "100h",
-        year: "2025"
-    },
-    {
-        name: "Boas Práticas de Cibersegurança",
-        description: "IC-SEC-1783",
-        issuer: "IBSEC",
-        hours: "30h",
-        year: "2026"
-    },
-    {
-        name: "Certificado Profissional de Segurança cibernética do Google",
-        issuer: "Google",
-        hours: "116h",
-        year: "2025"
-    },
-    {
-        name: "Introduction to Cybersecurity",
-        issuer: "IC2S",
-        hours: "116h",
-        year: "2025"
-    },
-    {
-        name: "Introdução a Redes de Computadores",
-        issuer: "FATEC",
-        hours: "80h",
-        year: "2024"
-    },
-    {
-        name: "Linux e Bash Scripting para Segurança",
-        issuer: "Plataforma X / Autodidata",
-        hours: "40h",
-        year: "2025"
-    }
+    { name: "Cybersecurity Essentials", issuer: "IBM", hours: "100h", year: "2025" },
+    { name: "Boas Práticas de Cibersegurança", description: "IC-SEC-1783", issuer: "IBSEC", hours: "30h", year: "2026" },
+    { name: "Certificado Profissional de Segurança cibernética", issuer: "Google", hours: "116h", year: "2025" },
+    { name: "Introduction to Cybersecurity", issuer: "IC2S", hours: "116h", year: "2025" },
+    { name: "Introdução a Redes de Computadores", issuer: "FATEC", hours: "80h", year: "2024" },
+    { name: "Linux e Bash Scripting para Segurança", issuer: "Plataforma X / Autodidata", hours: "40h", year: "2025" }
 ];
 
 const academicRecords = [
@@ -92,6 +60,11 @@ const techModules = [
     "Análise de Vulnerabilidades", "Git/GitHub", "Redes TCP/IP"
 ];
 
+// NOVA ADIÇÃO: Array de Soft Skills para cumprir o requisito do professor
+const softSkills = [
+    "Comunicação", "Organização", "Trabalho em Equipe", "Pensamento Analítico", "Resolução de Problemas"
+];
+
 function initSystem() {
     loadSavedTheme();
     checkSystemStatus();
@@ -100,6 +73,7 @@ function initSystem() {
     renderEducation();
     renderCerts();
     setupOutsideClickModal();
+    setupContactForm(); // Iniciando a validação do formulário
     systemBootSequence();
     typeWriterEffect();
 }
@@ -117,11 +91,9 @@ function checkSystemStatus() {
     }
 }
 
-
 function renderCerts() {
     const container = document.getElementById('certs-list');
     container.innerHTML = '';
-
     trainingRecords.forEach(record => {
         const item = document.createElement('div');
         item.className = 'cert-item';
@@ -137,7 +109,6 @@ function renderCerts() {
 function renderEducation() {
     const container = document.getElementById('edu-list');
     container.innerHTML = '';
-
     academicRecords.forEach(record => {
         const item = document.createElement('div');
         item.className = 'cert-item'; 
@@ -153,14 +124,10 @@ function renderEducation() {
 function renderProjects() {
     const grid = document.getElementById('projects-grid');
     grid.innerHTML = '';
-
-
     cyberProjects.forEach((project) => {
         const card = document.createElement('div');
         card.className = 'project-card';
-
         card.onclick = () => openModal(project.id);
-        
         card.innerHTML = `
             <h3>> ${project.name}</h3>
             <p>${project.shortDesc}</p>
@@ -172,44 +139,70 @@ function renderProjects() {
 
 function renderModules() {
     const container = document.getElementById('skills-container');
-    container.innerHTML = '';
-    techModules.forEach(module => {
+    container.innerHTML = '<h3 style="width: 100%; margin-bottom: 10px; font-family: var(--font-cmd); font-size: 0.9rem; color: var(--accent);">[+] Hard Skills</h3>';
+    
+    // REQUISITO CUMPRIDO: Comando de repetição 'for' explícito
+    for (let i = 0; i < techModules.length; i++) {
         const span = document.createElement('span');
         span.className = 'skill-tag';
-        span.textContent = module;
+        span.textContent = techModules[i];
         container.appendChild(span);
+    }
+
+    // Adicionando as Soft Skills no mesmo container
+    const softTitle = document.createElement('h3');
+    softTitle.style.cssText = 'width: 100%; margin-top: 15px; margin-bottom: 10px; font-family: var(--font-cmd); font-size: 0.9rem; color: var(--text-muted);';
+    softTitle.textContent = '[+] Soft Skills';
+    container.appendChild(softTitle);
+
+    for (let i = 0; i < softSkills.length; i++) {
+        const span = document.createElement('span');
+        span.className = 'skill-tag';
+        span.textContent = softSkills[i];
+        container.appendChild(span);
+    }
+}
+
+// REQUISITO CUMPRIDO: Estrutura de decisão (if / else) para validar formulário
+function setupContactForm() {
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão da página
+
+        const nameInput = document.getElementById('name').value;
+        const messageInput = document.getElementById('message').value;
+
+        // Estrutura de decisão if / else
+        if (nameInput.trim() === '' || messageInput.trim() === '') {
+            alert("[ERRO] Falha na execução: Os campos Target_Name e Payload_Message não podem estar vazios.");
+        } else {
+            alert("[SUCESSO] Payload enviado com sucesso. Conexão estabelecida com " + nameInput);
+            form.reset(); // Limpa o formulário após o envio
+        }
     });
 }
 
-
 function openModal(projectId) {
-
     const project = cyberProjects.find(p => p.id === projectId);
     if (!project) return;
-
-
     document.getElementById('modal-title').textContent = `> details: ${project.name}`;
     document.getElementById('modal-description').textContent = project.fullDesc;
     document.getElementById('modal-techs').textContent = `[ STACK: ${project.techs} ]`;
 
-
     const linksContainer = document.getElementById('modal-links');
     linksContainer.innerHTML = '';
-
     if (project.deployLink) {
         linksContainer.innerHTML += `<a href="${project.deployLink}" target="_blank">[> Acessar Deploy ]</a>`;
     }
     if (project.githubLink) {
         linksContainer.innerHTML += `<a href="${project.githubLink}" target="_blank">[> Ver Código Fonte (GitHub) ]</a>`;
     }
-
     document.getElementById('project-modal').style.display = 'flex';
 }
 
 function closeModal() {
     document.getElementById('project-modal').style.display = 'none';
 }
-
 
 function setupOutsideClickModal() {
     const modalOverlay = document.getElementById('project-modal');
@@ -220,10 +213,8 @@ function setupOutsideClickModal() {
     });
 }
 
-
 function toggleTheme() {
     const body = document.body;
-    
     if (body.classList.contains('light-theme')) {
         body.classList.remove('light-theme');
         localStorage.setItem('sys_theme', 'dark');
@@ -235,12 +226,10 @@ function toggleTheme() {
 
 function loadSavedTheme() {
     const savedTheme = localStorage.getItem('sys_theme');
-    
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
     }
 }
-
 
 function typeWriterEffect() {
     const text = "Especialista em Cibersegurança em formação";
@@ -255,17 +244,11 @@ function typeWriterEffect() {
             setTimeout(typing, Math.random() * 50 + 30); 
         }
     }
-    
-
     setTimeout(typing, 500);
 }
 
-
 function systemBootSequence() {
-
     const panels = document.querySelectorAll('.panel');
-    
-
     panels.forEach((panel, index) => {
         setTimeout(() => {
             panel.classList.add('booted');
